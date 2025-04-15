@@ -1,0 +1,53 @@
+/* pages.css */
+.page-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/page-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.page-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Clinic Page Styles */
+.clinic-search {
+    padding: 40px 0;
+    background: #f9f9f9;
+}
+
+.search-box {
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.clinic-card {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.clinic-image {
+    width: 40%;
+}
+
+.clinic-info {
+    width: 60%;
+    padding: 30px;
+}
+
+/* Add more styles as needed for other pages */
