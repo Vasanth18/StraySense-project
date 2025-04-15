@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Stray Sense</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2E7D32;
+            --light: #F1F8E9;
+            --dark: #1B5E20;
+            --text: #333;
+            --white: #fff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+        .auth-buttons a {
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: all 0.3s;
+        }
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        .hero {
+            background: url("D:/Final_year project/contact.png");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 250px 0;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .contact-info h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .info-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 20px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .info-text h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .contact-form h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .emergency-alert {
+            background-color: #FFF3E0;
+            border-left: 4px solid #FFA000;
+            padding: 20px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+        }
+        .emergency-icon {
+            color: #FFA000;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .emergency-text h4 {
+            color: #E65100;
+            margin-bottom: 5px;
+        }
+        .faq-section {
+            background-color: var(--light);
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background-color: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .faq-question:hover {
+            background-color: #f5f5f5;
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        .faq-toggle {
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .location-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .location-map {
+            height: 200px;
+            background-color: #eee;
+        }
+        .location-info {
+            padding: 20px;
+        }
+        .location-info h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        .location-meta {
+            margin-bottom: 15px;
+        }
+        .location-meta p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .location-meta i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-links-footer a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* Popup styles */
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .popup-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Stray<span>Sense</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="clinics.html">Clinics</a></li>
+                    <li><a href="adoption.html">Adoption</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="about.html">About us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get In Touch</h1>
+            <p>We're here to answer your questions and help with any concerns about stray dogs or rabies prevention in your area.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Headquarters</h4>
+                        <p>123 Animal Welfare Avenue<br>Green City, GC 12345</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Phone Numbers</h4>
+                        <p>General Inquiries: +1 (555) 123-4567<br>
+                        Adoption Questions: +1 (555) 123-4568<br>
+                        Veterinary Partners: +1 (555) 123-4569</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>General: info@straysense.org<br>
+                        Support: help@straysense.org<br>
+                        Partnerships: partners@straysense.org</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Office Hours</h4>
+                        <p>Monday-Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject">
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="adoption">Adoption Question</option>
+                            <option value="report">Stray Dog Report</option>
+                            <option value="volunteer">Volunteering</option>
+                            <option value="donation">Donation Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="emergency-alert">
+            <div class="emergency-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="emergency-text">
+                <h4>Rabies Emergency?</h4>
+                <p>If you've been bitten by a stray dog or suspect rabies exposure, call our 24/7 emergency hotline immediately: <strong>+1 (555) 911-9911</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common inquiries</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I report a stray dog in my area?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can report stray dogs through our mobile app, website contact form, or by calling your local Stray Sense office. Please provide as much detail as possible about the location and behavior of the dog.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What should I do if I find an injured stray dog?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Do not approach the dog if it appears aggressive. Call our emergency line or local animal control. If the dog is approachable and you can safely transport it, take it to the nearest partner veterinary clinic.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I volunteer with Stray Sense?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We welcome volunteers in various capacities including field operations, community education, and administrative support. Visit our Volunteer page or contact your local office for opportunities in your area.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's the adoption process like?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our adoption process involves an application, home check, and meet-and-greet with the dog. All our dogs are vaccinated, microchipped, and spayed/neutered before adoption.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How accurate is your rabies detection technology?</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our AI-powered detection system has a 92% accuracy rate in identifying potential rabies symptoms. All detections are verified by our veterinary team before any action is taken.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Our Locations</h2>
+            <p>Find a Stray Sense office near you</p>
+        </div>
+        
+        <div class="locations-grid">
+            <div class="location-card">
+                <div class="location-map">
+                    <img src="D:\Final_year project\alta view.jpeg" alt="City Office" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="location-info">
+                    <h3>Alta View Veterinary Clinic</h3>
+                    <div class="location-meta">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Animal Welfare Avenue, Green City</p>
+                        <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-map">
+                    <img src="D:\Final_year project\north hoffman.jpg" alt="West District Office" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="location-info">
+                    <h3>North Hoffman Vet Clinic</h3>
+                    <div class="location-meta">
+                        <p><i class="fas fa-map-marker-alt"></i> 456 Canine Street, West District</p>
+                        <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4570</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 10AM-5PM, Sat: 10AM-2PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <div class="location-map">
+                    <img src="D:\Final_year project\stanley.jpeg" alt="East District Office" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="location-info">
+                    <h3>Stanley Veterinary Clinic</h3>
+                    <div class="location-meta">
+                        <p><i class="fas fa-map-marker-alt"></i> 789 Rescue Road, East District</p>
+                        <p><i class="fas fa-phone-alt"></i> +1 (555) 123-4572</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM, Sat: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Stray Sense</h3>
+                    <p>An initiative aimed at proactively combating rabies and enhancing public safety by leveraging technology for early detection and monitoring of stray dogs.</p>
+                    <div class="social-links-footer">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="clinics.html">Clinics</a></li>
+                        <li><a href="adoption.html">Adoption</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Health Care Tips</a></li>
+                        <li><a href="#">Veterinarian Database</a></li>
+                        <li><a href="#">Community Events</a></li>
+                        <li><a href="#">Rabies Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Connected</h3>
+                    <p>Connect with us for updates on our activities, upcoming events and pet care information.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Stray Sense. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup Message -->
+    <div id="popup" class="popup-container">
+        <div class="popup-content">
+            <p>Your message has been sent successfully!</p>
+            <button id="closePopup" class="btn btn-primary">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Form submission and popup
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('popup').style.display = 'flex';
+            this.reset();
+        });
+
+        // Close popup
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

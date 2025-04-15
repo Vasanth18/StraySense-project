@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Stray Sense</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 2rem;
+        }
+        
+        .auth-form {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: #777;
+        }
+        
+        .form-divider::before,
+        .form-divider::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: #ddd;
+            margin: 0 1rem;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Stray<span>Sense</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="clinics.html">Clinics</a></li>
+                    <li><a href="adoption.html">Adoption</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline" id="loginBtn">Login</a>
+                    <a href="signup.html" class="btn btn-primary" id="signupBtn">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Form Section -->
+    <main class="auth-container">
+        <div class="auth-form">
+            <h2>Login to Your Account</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email or Phone number</label>
+                    <input type="text" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-options">
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
+                <div class="form-divider">
+                    <span>or</span>
+                </div>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="signup.html">Create a new account</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Stray Sense</h3>
+                    <p>An initiative aimed at proactively combating rabies and enhancing public safety by leveraging technology for early detection and monitoring of stray dogs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="clinics.html">Clinics</a></li>
+                        <li><a href="adoption.html">Adoption</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Health Care Tips</a></li>
+                        <li><a href="#">Veterinarian Database</a></li>
+                        <li><a href="#">Community Events</a></li>
+                        <li><a href="#">Rabies Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Connected</h3>
+                    <p>Connect with us for updates on our activities, upcoming events and pet care information.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Stray Sense. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Get input values
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Basic validation
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server for authentication
+            // For this example, we'll simulate a successful login after 0.5 seconds
+            
+            // Show loading state (optional)
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Signing in...';
+            
+            // Simulate authentication delay
+            setTimeout(function() {
+                // Redirect to home page after successful "login"
+                window.location.href = 'index.html';
+                
+                // In a real app, you might:
+                // 1. Store authentication token in localStorage/sessionStorage
+                // 2. Update UI to show logged-in state
+                // 3. Redirect to the home page or previous page
+            }, 500);
+        });
+        
+        // Optional: Add similar handling for the header login button
+        document.getElementById('loginBtn').addEventListener('click', function(event) {
+            // If you want the header login button to also trigger the form submission
+            // But typically it would just link to the login page
+        });
+    </script>
+</body>
+</html>

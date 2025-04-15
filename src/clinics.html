@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Clinics - Stray Sense</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2E7D32;
+            --light: #F1F8E9;
+            --dark: #1B5E20;
+            --text: #333;
+            --white: #fff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+        .auth-buttons a {
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: all 0.3s;
+        }
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('D:/Final_year project/BondVetHellsKitchen_Space_SameDay-5-scaled.webp');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        .search-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .clinics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .clinic-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .clinic-card:hover {
+            transform: translateY(-5px);
+        }
+        .clinic-info {
+            padding: 20px;
+        }
+        .clinic-info h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .clinic-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+        }
+        .clinic-meta span {
+            display: flex;
+            align-items: center;
+        }
+        .clinic-meta i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+        .clinic-services {
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .clinic-services span {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        .clinic-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        .map-container {
+            height: 500px;
+            margin: 50px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-links-footer a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            grid-column: 1 / -1;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .form-title {
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-align: center;
+        }
+        .form-subtitle {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #666;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Stray<span>Sense</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="clinics.html" class="active">Clinics</a></li>
+                    <li><a href="adoption.html">Adoption</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Partner Veterinary Clinics</h1>
+            <p>Find trusted veterinary clinics in our network offering specialized care for stray dogs and rabies prevention services.</p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="container">
+        <div class="search-container">
+            <h2>Find a Clinic Near You</h2>
+            <form class="search-form" id="clinicSearchForm">
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <select id="location" required>
+                        <option value="">All of Tamil Nadu</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Madurai">Madurai</option>
+                        <option value="Trichy">Trichy</option>
+                        <option value="Salem">Salem</option>
+                        <option value="Tirunelveli">Tirunelveli</option>
+                        <option value="Erode">Erode</option>
+                        <option value="Vellore">Vellore</option>
+                        <option value="Thanjavur">Thanjavur</option>
+                        <option value="Dindigul">Dindigul</option>
+                        <option value="Karur">Karur</option>
+                        <option value="Kanyakumari">Kanyakumari</option>
+                        <option value="Namakkal">Namakkal</option>
+                        <option value="Nilgiris">Nilgiris</option>
+                        <option value="Perambalur">Perambalur</option>
+                        <option value="Pudukkottai">Pudukkottai</option>
+                        <option value="Ramanathapuram">Ramanathapuram</option>
+                        <option value="Sivaganga">Sivaganga</option>
+                        <option value="Thoothukudi">Thoothukudi</option>
+                        <option value="Tiruvallur">Tiruvallur</option>
+                        <option value="Tiruvannamalai">Tiruvannamalai</option>
+                        <option value="Tiruvarur">Tiruvarur</option>
+                        <option value="Virudhunagar">Virudhunagar</option>
+                        <option value="Ariyalur">Ariyalur</option>
+                        <option value="Krishnagiri">Krishnagiri</option>
+                        <option value="Dharmapuri">Dharmapuri</option>
+                        <option value="Theni">Theni</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service</label>
+                    <select id="service">
+                        <option value="">All Services</option>
+                        <option value="vaccination">Rabies Vaccination</option>
+                        <option value="emergency">Emergency Care</option>
+                        <option value="surgery">Spay/Neuter</option>
+                        <option value="checkup">General Checkup</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="availability">Availability</label>
+                    <select id="availability">
+                        <option value="">Any Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="weekend">Weekend</option>
+                        <option value="afterhours">After Hours</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary">Search Clinics</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="section-title">
+            <h2 id="resultsTitle">Featured Clinics in Tamil Nadu</h2>
+            <p id="resultsSubtitle">Trusted veterinary partners providing quality care across the state</p>
+        </div>
+
+        <div class="clinics-grid" id="clinicsResults">
+            <!-- Clinic cards will be dynamically inserted here -->
+        </div>
+
+        <div class="section-title">
+            <h2>Our Clinic Network in Tamil Nadu</h2>
+        </div>
+        <div class="map-container">
+            <!-- Map would be embedded here -->
+            <img src= "D:\Final_year project\thumbnail.jpeg" alt="Tamil Nadu clinic locations map" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Stray Sense</h3>
+                    <p>An initiative aimed at proactively combating rabies and enhancing public safety by leveraging technology for early detection and monitoring of stray dogs.</p>
+                    <div class="social-links-footer">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="clinics.html">Clinics</a></li>
+                        <li><a href="adoption.html">Adoption</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Health Care Tips</a></li>
+                        <li><a href="#">Veterinarian Database</a></li>
+                        <li><a href="#">Community Events</a></li>
+                        <li><a href="#">Rabies Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Connected</h3>
+                    <p>Connect with us for updates on our activities, upcoming events and pet care information.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Stray Sense. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Appointment Modal -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="form-title">Book an Appointment</h2>
+            <p class="form-subtitle">Fill out the form to schedule your visit</p>
+            
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="patientName">Your Name</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientEmail">Email</label>
+                    <input type="email" id="patientEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientPhone">Phone Number</label>
+                    <input type="tel" id="patientPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="clinicName">Clinic Name</label>
+                    <input type="text" id="clinicName" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Preferred Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Preferred Time</label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceType">Service Needed</label>
+                    <select id="serviceType" required>
+                        <option value="">Select Service</option>
+                        <option value="vaccination">Rabies Vaccination</option>
+                        <option value="checkup">General Checkup</option>
+                        <option value="surgery">Spay/Neuter Surgery</option>
+                        <option value="emergency">Emergency Care</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="petDetails">Pet Details (if applicable)</label>
+                    <textarea id="petDetails" placeholder="Describe your pet and any health concerns"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Appointment Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Section -->
+    <script>
+        // Clinic data for Tamil Nadu districts
+        const clinics = [
+            // Chennai clinics
+            {
+                id: 1,
+                name: "Blue Cross of India",
+                location: "Chennai",
+                address: "72, Velachery Road, Guindy, Chennai - 600032",
+                phone: "+91 44 2235 5155",
+                rating: 4.7,
+                reviews: 245,
+                description: "One of India's oldest animal welfare organizations with full-service veterinary hospital.",
+                services: ["Vaccinations", "Emergency", "Surgery", "Adoption"],
+                timings: "9:00 AM - 6:00 PM (24/7 emergency)"
+            },
+            {
+                id: 2,
+                name: "People for Animals Chennai",
+                location: "Chennai",
+                address: "No.82, Rajiv Gandhi Salai, Sholinganallur, Chennai - 600119",
+                phone: "+91 44 2450 0909",
+                rating: 4.5,
+                reviews: 182,
+                description: "Provides medical care for stray animals with subsidized treatment options.",
+                services: ["Vaccinations", "Sterilization", "Rescue", "Rehabilitation"],
+                timings: "8:00 AM - 8:00 PM"
+            },
+            
+            // Coimbatore clinics
+            {
+                id: 3,
+                name: "Coimbatore Animal Welfare Society",
+                location: "Coimbatore",
+                address: "178, Mettupalayam Road, Coimbatore - 641043",
+                phone: "+91 422 454 5454",
+                rating: 4.6,
+                reviews: 167,
+                description: "Full-service animal hospital with focus on stray animal care and adoption.",
+                services: ["Vaccinations", "Checkups", "Surgery", "Microchipping"],
+                timings: "9:00 AM - 7:00 PM"
+            },
+            {
+                id: 4,
+                name: "Pet Vet Animal Hospital",
+                location: "Coimbatore",
+                address: "121, DB Road, RS Puram, Coimbatore - 641002",
+                phone: "+91 422 436 3636",
+                rating: 4.8,
+                reviews: 213,
+                description: "Advanced veterinary care with modern facilities and emergency services.",
+                services: ["Emergency", "Dental", "X-Ray", "Ultrasound"],
+                timings: "24/7"
+            },
+            
+            // Madurai clinics
+            {
+                id: 5,
+                name: "Madurai Animal Welfare Trust",
+                location: "Madurai",
+                address: "45, Anna Nagar, Madurai - 625020",
+                phone: "+91 452 345 6789",
+                rating: 4.4,
+                reviews: 132,
+                description: "Dedicated to providing medical care for street animals in Madurai.",
+                services: ["Vaccinations", "Sterilization", "First Aid", "Rescue"],
+                timings: "8:00 AM - 6:00 PM"
+            },
+            {
+                id: 6,
+                name: "Vetri Veterinary Clinic",
+                location: "Madurai",
+                address: "78, West Masi Street, Madurai - 625001",
+                phone: "+91 452 234 5678",
+                rating: 4.7,
+                reviews: 198,
+                description: "Comprehensive veterinary services with experienced doctors.",
+                services: ["Checkups", "Surgery", "Vaccinations", "Lab Tests"],
+                timings: "9:00 AM - 8:00 PM"
+            },
+            
+            // Trichy clinics
+            {
+                id: 7,
+                name: "Trichy Animal Welfare Association",
+                location: "Trichy",
+                address: "12, Williams Road, Cantonment, Trichy - 620001",
+                phone: "+91 431 276 5432",
+                rating: 4.3,
+                reviews: 121,
+                description: "Provides medical care and shelter for stray animals in Trichy.",
+                services: ["Vaccinations", "Sterilization", "Adoption", "First Aid"],
+                timings: "8:30 AM - 5:30 PM"
+            },
+            {
+                id: 8,
+                name: "Pet Care Veterinary Hospital",
+                location: "Trichy",
+                address: "45, Bharathidasan Road, Trichy - 620018",
+                phone: "+91 431 245 6789",
+                rating: 4.6,
+                reviews: 156,
+                description: "Modern veterinary hospital with diagnostic facilities.",
+                services: ["Emergency", "X-Ray", "Ultrasound", "Dental"],
+                timings: "9:00 AM - 9:00 PM"
+            },
+            
+            // Salem clinics
+            {
+                id: 9,
+                name: "Salem Animal Welfare Society",
+                location: "Salem",
+                address: "34, Fort Main Road, Salem - 636001",
+                phone: "+91 427 234 5678",
+                rating: 4.2,
+                reviews: 98,
+                description: "Works for the welfare of stray animals with medical facilities.",
+                services: ["Vaccinations", "Sterilization", "First Aid", "Adoption"],
+                timings: "9:00 AM - 5:00 PM"
+            },
+            {
+                id: 10,
+                name: "Paws & Tails Veterinary Clinic",
+                location: "Salem",
+                address: "78, Five Roads, Salem - 636004",
+                phone: "+91 427 345 6789",
+                rating: 4.5,
+                reviews: 143,
+                description: "Comprehensive pet care with experienced veterinarians.",
+                services: ["Checkups", "Surgery", "Vaccinations", "Grooming"],
+                timings: "9:00 AM - 8:00 PM"
+            },
+            
+            // Tirunelveli clinics
+            {
+                id: 11,
+                name: "Tirunelveli Animal Welfare Trust",
+                location: "Tirunelveli",
+                address: "23, Trivandrum Highway, Palayamkottai, Tirunelveli - 627002",
+                phone: "+91 462 234 5678",
+                rating: 4.1,
+                reviews: 87,
+                description: "Provides medical care for stray animals in Tirunelveli district.",
+                services: ["Vaccinations", "Sterilization", "First Aid", "Rescue"],
+                timings: "8:00 AM - 5:00 PM"
+            },
+            {
+                id: 12,
+                name: "Pet Heaven Veterinary Clinic",
+                location: "Tirunelveli",
+                address: "56, High Ground, Tirunelveli - 627011",
+                phone: "+91 462 345 6789",
+                rating: 4.4,
+                reviews: 112,
+                description: "Modern veterinary care with compassionate service.",
+                services: ["Checkups", "Surgery", "Vaccinations", "Lab Tests"],
+                timings: "9:00 AM - 8:00 PM"
+            },
+            
+            // Erode clinics
+            {
+                id: 13,
+                name: "Erode Animal Welfare Association",
+                location: "Erode",
+                address: "12, Brough Road, Erode - 638001",
+                phone: "+91 424 234 5678",
+                rating: 4.0,
+                reviews: 76,
+                description: "Works for the welfare of stray animals in Erode district.",
+                services: ["Vaccinations", "Sterilization", "First Aid", "Adoption"],
+                timings: "9:00 AM - 5:00 PM"
+            },
+            {
+                id: 14,
+                name: "Pet Care Veterinary Center",
+                location: "Erode",
+                address: "45, PVR Complex, Erode - 638003",
+                phone: "+91 424 345 6789",
+                rating: 4.3,
+                reviews: 104,
+                description: "Comprehensive veterinary services with modern facilities.",
+                services: ["Checkups", "Surgery", "Vaccinations", "Dental"],
+                timings: "9:00 AM - 8:00 PM"
+            },
+            
+            // Vellore clinics
+            {
+                id: 15,
+                name: "Vellore Animal Welfare Society",
+                location: "Vellore",
+                address: "34, Officer's Line, Vellore - 632001",
+                phone: "+91 416 234 5678",
+                rating: 4.2,
+                reviews: 89,
+                description: "Provides medical care for stray animals in Vellore district.",
+                services: ["Vaccinations", "Sterilization", "First Aid", "Rescue"],
+                timings: "9:00 AM - 5:00 PM"
+            },
+            {
+                id: 16,
+                name: "Pet Vet Animal Hospital",
+                location: "Vellore",
+                address: "78, Katpadi Road, Vellore - 632004",
+                phone: "+91 416 345 6789",
+                rating: 4.5,
+                reviews: 132,
+                description: "Advanced veterinary care with diagnostic facilities.",
+                services: ["Emergency", "X-Ray", "Ultrasound", "Lab Tests"],
+                timings: "9:00 AM - 9:00 PM"
+            }
+        ];
+
+        // DOM elements
+        const searchForm = document.getElementById('clinicSearchForm');
+        const clinicsResults = document.getElementById('clinicsResults');
+        const resultsTitle = document.getElementById('resultsTitle');
+        const resultsSubtitle = document.getElementById('resultsSubtitle');
+        
+        // Modal elements
+        const modal = document.getElementById('appointmentModal');
+        const closeBtn = document.querySelector('.close');
+        const appointmentForm = document.getElementById('appointmentForm');
+        const clinicNameInput = document.getElementById('clinicName');
+
+        // Initialize with all Tamil Nadu clinics
+        displayResults(clinics, "Tamil Nadu");
+
+        // Form submission handler
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const locationFilter = document.getElementById('location').value;
+            const serviceFilter = document.getElementById('service').value;
+            const availabilityFilter = document.getElementById('availability').value;
+            
+            // Filter clinics based on search criteria
+            let filteredClinics = clinics.filter(clinic => {
+                // Check location (district or city)
+                const locationMatch = locationFilter === '' || 
+                                    clinic.location === locationFilter;
+                
+                // Check service if selected
+                const serviceMatch = serviceFilter === '' || clinic.services.some(service => 
+                    serviceFilter === 'vaccination' ? service.includes('Vaccinations') :
+                    serviceFilter === 'emergency' ? service.includes('Emergency') :
+                    serviceFilter === 'surgery' ? service.includes('Surgery') :
+                    serviceFilter === 'checkup' ? service.includes('Checkups') : false
+                );
+                
+                // Check availability (simplified for demo)
+                const availabilityMatch = availabilityFilter === '' || 
+                    (availabilityFilter === 'today' && clinic.id % 2 === 0) || // Some clinics have availability today
+                    (availabilityFilter === 'weekend' && clinic.id % 3 === 0); // Some clinics have weekend availability
+                
+                return locationMatch && serviceMatch && availabilityMatch;
+            });
+            
+            // Display results
+            displayResults(filteredClinics, locationFilter || "Tamil Nadu");
+        });
+
+        // Display filtered clinics
+        function displayResults(filteredClinics, searchTerm) {
+            clinicsResults.innerHTML = '';
+            
+            if (filteredClinics.length === 0) {
+                clinicsResults.innerHTML = `
+                    <div class="no-results">
+                        <h3>No clinics found matching your search criteria</h3>
+                        <p>Try adjusting your filters or select a different location.</p>
+                    </div>
+                `;
+                resultsTitle.textContent = "No Results Found";
+                resultsSubtitle.textContent = "Try searching with different filters";
+                return;
+            }
+            
+            // Update results title
+            const displayLocation = searchTerm === "Tamil Nadu" ? 
+                "Tamil Nadu" : searchTerm;
+            
+            resultsTitle.textContent = displayLocation === "Tamil Nadu" ? 
+                "Featured Clinics in Tamil Nadu" : 
+                `Clinics in ${displayLocation}`;
+                
+            resultsSubtitle.textContent = filteredClinics.length === 1 ? 
+                "1 clinic found" : 
+                `${filteredClinics.length} clinics found`;
+            
+            // Create clinic cards
+            filteredClinics.forEach(clinic => {
+                const clinicCard = document.createElement('div');
+                clinicCard.className = 'clinic-card';
+                clinicCard.innerHTML = `
+                    <div class="clinic-info">
+                        <h3>${clinic.name}</h3>
+                        <div class="clinic-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> ${clinic.location}</span>
+                            <span><i class="fas fa-star"></i> ${clinic.rating} (${clinic.reviews})</span>
+                        </div>
+                        <p><i class="fas fa-map-pin"></i> ${clinic.address}</p>
+                        <p><i class="fas fa-clock"></i> ${clinic.timings}</p>
+                        <p>${clinic.description}</p>
+                        <div class="clinic-services">
+                            ${clinic.services.map(service => `<span>${service}</span>`).join('')}
+                        </div>
+                        <div class="clinic-actions">
+                            <a href="tel:${clinic.phone}" class="btn btn-outline btn-sm"><i class="fas fa-phone"></i> ${clinic.phone}</a>
+                            <button class="btn btn-primary btn-sm book-appointment" data-clinic="${clinic.name}">Book Appointment</button>
+                        </div>
+                    </div>
+                `;
+                clinicsResults.appendChild(clinicCard);
+            });
+            
+            // Add event listeners to all appointment buttons
+            document.querySelectorAll('.book-appointment').forEach(button => {
+                button.addEventListener('click', function() {
+                    const clinicName = this.getAttribute('data-clinic');
+                    openAppointmentModal(clinicName);
+                });
+            });
+        }
+        
+        // Modal functions
+        function openAppointmentModal(clinicName) {
+            clinicNameInput.value = clinicName;
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        
+        // Event listeners for modal
+        closeBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Appointment form submission
+        appointmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('patientName').value;
+            const email = document.getElementById('patientEmail').value;
+            const phone = document.getElementById('patientPhone').value;
+            const clinic = document.getElementById('clinicName').value;
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+            const service = document.getElementById('serviceType').value;
+            const details = document.getElementById('petDetails').value;
+            
+            // Here you would typically send this data to a server
+
+            console.log('Appointment Request:', {
+                name,
+                email,
+                phone,
+                clinic,
+                date,
+                time,
+                service,
+                details
+            });
+            
+            // Show success message
+            alert(`Thank you, ${name}! Your appointment request has been submitted to ${clinic}. We will contact you shortly to confirm.`);
+            
+            // Reset form and close modal
+            appointmentForm.reset();
+            closeModal();
+        });
+    </script>
+</body>
+</html>

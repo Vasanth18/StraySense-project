@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoption - Stray Sense</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2E7D32;
+            --light: #F1F8E9;
+            --dark: #1B5E20;
+            --text: #333;
+            --white: #fff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+        .auth-buttons a {
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: all 0.3s;
+        }
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+        .hero {
+            background:  url('D:/Final_year project/adoption.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+            margin: 10px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 30px;
+        }
+        .step h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .dogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .dog-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        .dog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .dog-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .dog-card:hover .dog-image img {
+            transform: scale(1.1);
+        }
+        .dog-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .dog-info {
+            padding: 20px;
+        }
+        .dog-info h3 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .dog-meta {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        .dog-meta span {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .dog-meta i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+        .dog-traits {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .trait {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .dog-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        .testimonials {
+            background-color: var(--light);
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .testimonial-text::before {
+            content: '"';
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+        .social-links-footer {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-links-footer a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .process-steps {
+                flex-direction: column;
+            }
+            .step {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: var(--dark);
+        }
+        .dog-profile {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .dog-profile-header {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .dog-profile-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .dog-profile-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .dog-profile-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        .dog-profile-info h2 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .dog-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-item h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        .dog-bio {
+            margin: 20px 0;
+        }
+        .adoption-form-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        /* Adoption Form Styles */
+        .adoption-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .form-section h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary);
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .checkbox-item input {
+            margin-right: 8px;
+        }
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .required-field::after {
+            content: '*';
+            color: red;
+            margin-left: 4px;
+        }
+        .dog-profile-nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Stray<span>Sense</span></div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="clinics.html">Clinics</a></li>
+                    <li><a href="adoption.html" class="active">Adoption</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Give a Stray Dog a Loving Home</h1>
+            <p>Browse our rescued dogs ready for adoption and find your perfect companion.</p>
+        </div>
+    </section>
+
+    <!-- Adoption Process -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Our Adoption Process</h2>
+            <p>Simple steps to bring your new friend home</p>
+        </div>
+
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Browse Dogs</h3>
+                <p>View profiles of available dogs and find one that matches your lifestyle.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Submit Application</h3>
+                <p>Complete our online adoption form to begin the process.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Home Check</h3>
+                <p>We'll schedule a virtual or in-person home visit to ensure a good fit.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h3>Meet & Adopt</h3>
+                <p>Finalize paperwork and bring your new family member home!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Dogs -->
+    <section class="container">
+        <div class="section-title">
+            <h2>Dogs Available for Adoption</h2>
+            <p>All our dogs are vaccinated, microchipped, and spayed/neutered</p>
+        </div>
+
+        <div class="dogs-grid">
+            <div class="dog-card">
+                <div class="dog-image">
+                    <img src="D:\Final_year project\dog1.jpeg" alt="Buddy">
+                    <div class="dog-badge">Just Arrived</div>
+                </div>
+                <div class="dog-info">
+                    <h3>Buddy</h3>
+                    <div class="dog-meta">
+                        <span><i class="fas fa-venus-mars"></i> Male</span>
+                        <span><i class="fas fa-birthday-cake"></i> 2 years</span>
+                        <span><i class="fas fa-weight"></i> 18 kg</span>
+                    </div>
+                    <div class="dog-traits">
+                        <span class="trait">Friendly</span>
+                        <span class="trait">Good with Kids</span>
+                        <span class="trait">House Trained</span>
+                    </div>
+                    <div class="dog-actions">
+                        <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('buddy')">View Profile</a>
+                        <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Buddy')">Adopt Me</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image">
+                    <img src="D:\Final_year project\dog2.jpeg" alt="Luna">
+                    <div class="dog-badge">Special Needs</div>
+                </div>
+                <div class="dog-info">
+                    <h3>Luna</h3>
+                    <div class="dog-meta">
+                        <span><i class="fas fa-venus-mars"></i> Female</span>
+                        <span><i class="fas fa-birthday-cake"></i> 4 years</span>
+                        <span><i class="fas fa-weight"></i> 12 kg</span>
+                    </div>
+                    <div class="dog-traits">
+                        <span class="trait">Calm</span>
+                        <span class="trait">Special Diet</span>
+                        <span class="trait">Lap Dog</span>
+                    </div>
+                    <div class="dog-actions">
+                        <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('luna')">View Profile</a>
+                        <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Luna')">Adopt Me</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dog-card">
+                <div class="dog-image">
+                    <img src="D:\Final_year project\dog3.jpeg" alt="Rocky">
+                </div>
+                <div class="dog-info">
+                    <h3>Rocky</h3>
+                    <div class="dog-meta">
+                        <span><i class="fas fa-venus-mars"></i> Male</span>
+                        <span><i class="fas fa-birthday-cake"></i> 1 year</span>
+                        <span><i class="fas fa-weight"></i> 25 kg</span>
+                    </div>
+                    <div class="dog-traits">
+                        <span class="trait">Energetic</span>
+                        <span class="trait">Loves Walks</span>
+                        <span class="trait">Playful</span>
+                    </div>
+                    <div class="dog-actions">
+                        <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('rocky')">View Profile</a>
+                        <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Rocky')">Adopt Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center" style="margin: 40px 0;">
+            <a href="#" class="btn btn-primary" onclick="openAllDogsModal()">View All Available Dogs</a>
+        </div>
+    </section>
+
+    <!-- Dog Profile Modals -->
+    <!-- Buddy Modal -->
+    <div id="buddyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('buddyModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog1.jpeg" alt="Buddy">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Buddy</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>Labrador Mix</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>2 years</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Medium</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Male</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>18 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹1,500</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Friendly</span>
+                            <span class="trait">Good with Kids</span>
+                            <span class="trait">House Trained</span>
+                            <span class="trait">Loves Toys</span>
+                            <span class="trait">Good with Dogs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Buddy</h3>
+                    <p>Buddy is a lovable Labrador mix who was found wandering the streets of Bangalore. Despite his rough start, he's one of the friendliest dogs you'll ever meet! Buddy loves people of all ages and gets along well with other dogs. He's already house-trained and knows basic commands like "sit" and "stay."</p>
+                    <p>Buddy would do best in an active home where he can get plenty of exercise. He loves long walks, playing fetch, and cuddling on the couch. His ideal family would have experience with medium-sized dogs and be able to continue his basic training.</p>
+                    <p><strong>Health Notes:</strong> Buddy is in excellent health, up-to-date on all vaccinations, and has been neutered. He has no known health issues.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('buddyModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Buddy')">Adopt Buddy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Luna Modal -->
+    <div id="lunaModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('lunaModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog2.jpeg" alt="Luna">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Luna</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>Indian Pariah</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>4 years</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Small</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Female</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>12 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹1,000</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Calm</span>
+                            <span class="trait">Special Diet</span>
+                            <span class="trait">Lap Dog</span>
+                            <span class="trait">Quiet</span>
+                            <span class="trait">Affectionate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Luna</h3>
+                    <p>Luna is a sweet Indian Pariah who was rescued from a construction site where she was struggling to find food. She's a gentle soul who loves nothing more than curling up in your lap and getting gentle pets. Luna is perfect for someone looking for a calm companion.</p>
+                    <p>Due to some digestive issues, Luna requires a special diet (which we'll provide information about to adopters). She's not very active but enjoys short walks and sunbathing. Luna would do best in a quiet home without young children or other pets, as she can be shy around too much activity.</p>
+                    <p><strong>Health Notes:</strong> Luna has a sensitive stomach and requires a special diet. She's spayed, microchipped, and up-to-date on vaccinations. She's on medication for her digestive issues that costs about ₹500/month.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('lunaModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Luna')">Adopt Luna</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rocky Modal -->
+    <div id="rockyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('rockyModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog3.jpeg" alt="Rocky">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Rocky</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>Boxer Mix</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>1 year</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Large</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Male</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>25 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹2,000</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Energetic</span>
+                            <span class="trait">Loves Walks</span>
+                            <span class="trait">Playful</span>
+                            <span class="trait">Strong</span>
+                            <span class="trait">Intelligent</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Rocky</h3>
+                    <p>Rocky is a young, energetic Boxer mix who was abandoned near a highway. Despite his rough start, he's full of love and energy! Rocky is very playful and would make an excellent companion for someone who enjoys an active lifestyle. He loves long walks, runs, and playing with toys.</p>
+                    <p>Rocky is still learning basic commands and would benefit from continued training. He's strong, so he'd do best with an owner who can handle his size and energy. Rocky would thrive in a home with a yard where he can burn off his energy. He's good with older children but may be too rambunctious for small kids.</p>
+                    <p><strong>Health Notes:</strong> Rocky is in excellent health, neutered, and up-to-date on all vaccinations. He has no known health issues but will need regular exercise to stay happy and healthy.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('rockyModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Rocky')">Adopt Rocky</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Dogs Modal -->
+    <div id="allDogsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('allDogsModal')">&times;</span>
+            <h2>All Available Dogs</h2>
+            <div class="dogs-grid">
+                <!-- Buddy -->
+                <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog1.jpeg" alt="Buddy">
+                        <div class="dog-badge">Just Arrived</div>
+                    </div>
+                    <div class="dog-info">
+                        <h3>Buddy</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Male</span>
+                            <span><i class="fas fa-birthday-cake"></i> 2 years</span>
+                            <span><i class="fas fa-weight"></i> 18 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Friendly</span>
+                            <span class="trait">Good with Kids</span>
+                            <span class="trait">House Trained</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('buddy')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Buddy')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Luna -->
+                <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog2.jpeg" alt="Luna">
+                        <div class="dog-badge">Special Needs</div>
+                    </div>
+                    <div class="dog-info">
+                        <h3>Luna</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Female</span>
+                            <span><i class="fas fa-birthday-cake"></i> 4 years</span>
+                            <span><i class="fas fa-weight"></i> 12 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Calm</span>
+                            <span class="trait">Special Diet</span>
+                            <span class="trait">Lap Dog</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('luna')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Luna')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rocky -->
+                <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog3.jpeg" alt="Rocky">
+                    </div>
+                    <div class="dog-info">
+                        <h3>Rocky</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Male</span>
+                            <span><i class="fas fa-birthday-cake"></i> 1 year</span>
+                            <span><i class="fas fa-weight"></i> 25 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Energetic</span>
+                            <span class="trait">Loves Walks</span>
+                            <span class="trait">Playful</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('rocky')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Rocky')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Additional dogs -->
+                 <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog4.jpg" alt="Daisy">
+                        <div class="dog-badge">Senior</div>
+                    </div>
+                    <div class="dog-info">
+                        <h3>Daisy</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Female</span>
+                            <span><i class="fas fa-birthday-cake"></i> 8 years</span>
+                            <span><i class="fas fa-weight"></i> 15 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Gentle</span>
+                            <span class="trait">Low Energy</span>
+                            <span class="trait">House Trained</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('daisy')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Daisy')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog5.jpg" alt="Max">
+                    </div>
+                    <div class="dog-info">
+                        <h3>Max</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Male</span>
+                            <span><i class="fas fa-birthday-cake"></i> 3 years</span>
+                            <span><i class="fas fa-weight"></i> 20 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Playful</span>
+                            <span class="trait">Good with Cats</span>
+                            <span class="trait">Intelligent</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('max')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Max')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog6.jpg" alt="Coco">
+                        <div class="dog-badge">Puppy</div>
+                    </div>
+                    <div class="dog-info">
+                        <h3>Coco</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Female</span>
+                            <span><i class="fas fa-birthday-cake"></i> 6 months</span>
+                            <span><i class="fas fa-weight"></i> 8 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Curious</span>
+                            <span class="trait">Energetic</span>
+                            <span class="trait">Quick Learner</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('coco')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Coco')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dog-card">
+                    <div class="dog-image">
+                        <img src="D:\Final_year project\dog7.jpg" alt="Rusty">
+                    </div>
+                    <div class="dog-info">
+                        <h3>Rusty</h3>
+                        <div class="dog-meta">
+                            <span><i class="fas fa-venus-mars"></i> Male</span>
+                            <span><i class="fas fa-birthday-cake"></i> 5 years</span>
+                            <span><i class="fas fa-weight"></i> 22 kg</span>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Loyal</span>
+                            <span class="trait">Protective</span>
+                            <span class="trait">Quiet</span>
+                        </div>
+                        <div class="dog-actions">
+                            <a href="#" class="btn btn-outline btn-sm" onclick="openDogModal('rusty')">View Profile</a>
+                            <a href="#" class="btn btn-primary btn-sm" onclick="openAdoptionForm('Rusty')">Adopt Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin: 30px 0;">
+                <p>Can't find your perfect match? Check back often as we regularly rescue new dogs!</p>
+                <a href="#" class="btn btn-primary">Notify Me About New Dogs</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Dog Profile Modals -->
+    <!-- Daisy Modal -->
+    <div id="daisyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('daisyModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog4.jpg" alt="Daisy">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Daisy</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>Beagle Mix</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>8 years</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Medium</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Female</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>15 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹1,000</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Gentle</span>
+                            <span class="trait">Low Energy</span>
+                            <span class="trait">House Trained</span>
+                            <span class="trait">Good with Dogs</span>
+                            <span class="trait">Quiet</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Daisy</h3>
+                    <p>Daisy is a sweet senior Beagle mix who was surrendered when her owner could no longer care for her. She's a mellow, easygoing girl who enjoys leisurely walks and lots of naps. Daisy is perfectly content to curl up at your feet while you work or watch TV.</p>
+                    <p>As an older dog, Daisy doesn't require much exercise but does enjoy short walks to sniff around. She's great with other dogs and would make an excellent companion for someone looking for a low-maintenance pet. Daisy would do best in a calm home without young children.</p>
+                    <p><strong>Health Notes:</strong> Daisy is in good health for her age but has some mild arthritis that is managed with joint supplements. She's spayed, microchipped, and up-to-date on all vaccinations.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('daisyModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Daisy')">Adopt Daisy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Max Modal -->
+    <div id="maxModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('maxModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog5.jpeg" alt="Max">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Max</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>German Shepherd Mix</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>3 years</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Large</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Male</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>20 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹2,000</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Playful</span>
+                            <span class="trait">Good with Cats</span>
+                            <span class="trait">Intelligent</span>
+                            <span class="trait">Loyal</span>
+                            <span class="trait">Protective</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Max</h3>
+                    <p>Max is a handsome German Shepherd mix with a wonderful temperament. He was found as a stray but has clearly had some training in his past. Max knows basic commands and walks well on a leash. He's incredibly smart and eager to please, making him a great candidate for additional training.</p>
+                    <p>Max gets along well with other dogs and even cats! He has a medium energy level - he enjoys playtime and walks but is also happy to relax at home. Max would do best with an active family who can provide him with mental stimulation and physical exercise.</p>
+                    <p><strong>Health Notes:</strong> Max is in excellent health, neutered, microchipped, and up-to-date on all vaccinations. He has no known health issues.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('maxModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Max')">Adopt Max</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coco Modal -->
+    <div id="cocoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cocoModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog6.jpg" alt="Coco">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Coco</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>Indian Spitz Mix</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>6 months</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Small (will be medium)</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Female</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>8 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹1,800</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Curious</span>
+                            <span class="trait">Energetic</span>
+                            <span class="trait">Quick Learner</span>
+                            <span class="trait">Playful</span>
+                            <span class="trait">Affectionate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Coco</h3>
+                    <p>Coco is an adorable Indian Spitz mix puppy who was rescued with her siblings from an unsafe environment. She's a bright, curious pup who loves exploring her surroundings and playing with toys. Coco is at the perfect age for training and socialization.</p>
+                    <p>As a puppy, Coco will need patience and consistent training. She's learning quickly and already knows "sit" and is working on other commands. Coco would do best in a home where someone is around much of the day to continue her training and provide plenty of playtime.</p>
+                    <p><strong>Health Notes:</strong> Coco is in excellent health, up-to-date on puppy vaccinations, and will be spayed before adoption. She has no known health issues.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('cocoModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Coco')">Adopt Coco</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rusty Modal -->
+    <div id="rustyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('rustyModal')">&times;</span>
+            <div class="dog-profile">
+                <div class="dog-profile-header">
+                    <div class="dog-profile-image">
+                        <img src="D:\Final_year project\dog7.jpg" alt="Rusty">
+                    </div>
+                    <div class="dog-profile-info">
+                        <h2>Rusty</h2>
+                        <div class="dog-stats">
+                            <div class="stat-item">
+                                <h4>Breed</h4>
+                                <p>Indian Pariah</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Age</h4>
+                                <p>5 years</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Size</h4>
+                                <p>Medium</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Gender</h4>
+                                <p>Male</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Weight</h4>
+                                <p>22 kg</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Adoption Fee</h4>
+                                <p>₹1,200</p>
+                            </div>
+                        </div>
+                        <div class="dog-traits">
+                            <span class="trait">Loyal</span>
+                            <span class="trait">Protective</span>
+                            <span class="trait">Quiet</span>
+                            <span class="trait">Independent</span>
+                            <span class="trait">Low Shedding</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dog-bio">
+                    <h3>About Rusty</h3>
+                    <p>Rusty is a handsome Indian Pariah with a calm, dignified demeanor. He was found as a stray but has clearly been someone's companion before. Rusty is very loyal to his people and makes an excellent watch dog, alerting to strangers but not being overly vocal.</p>
+                    <p>Rusty enjoys daily walks but is otherwise quite low-energy in the home. He's independent but affectionate on his own terms. Rusty would do best in a home without small children, as he prefers calm environments. He gets along with other dogs but would also be fine as an only pet.</p>
+                    <p><strong>Health Notes:</strong> Rusty is in excellent health, neutered, microchipped, and up-to-date on all vaccinations. He has no known health issues.</p>
+                </div>
+                <div class="dog-profile-nav">
+                    <a href="#" class="btn btn-outline" onclick="closeModal('rustyModal')">Back to List</a>
+                    <a href="#" class="btn btn-primary" onclick="openAdoptionForm('Rusty')">Adopt Rusty</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adoption Application Form Modal -->
+    <div id="adoptionFormModal" class="modal">
+        <div class="modal-content" style="max-width: 900px;">
+            <span class="close" onclick="closeModal('adoptionFormModal')">&times;</span>
+            <div class="adoption-form">
+                <h2>Adoption Application Form</h2>
+                <p id="applyingFor">Applying to adopt: <strong></strong></p>
+                
+                <form id="adoptionApplication">
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="required-field">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="required-field">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="required-field">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="required-field">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="required-field">Street Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city" class="required-field">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state" class="required-field">State</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip" class="required-field">ZIP Code</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Home & Family</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="housingType" class="required-field">Housing Type</label>
+                                <select id="housingType" name="housingType" required>
+                                    <option value="">Select</option>
+                                    <option value="own">Own</option>
+                                    <option value="rent">Rent</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="landlordName">Landlord Name (if renting)</label>
+                                <input type="text" id="landlordName" name="landlordName">
+                            </div>
+                            <div class="form-group">
+                                <label for="landlordPhone">Landlord Phone (if renting)</label>
+                                <input type="tel" id="landlordPhone" name="landlordPhone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="householdMembers" class="required-field">Number of Household Members</label>
+                                <input type="number" id="householdMembers" name="householdMembers" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="childrenAge">Ages of Children (if any)</label>
+                                <input type="text" id="childrenAge" name="childrenAge" placeholder="e.g., 5, 8">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="required-field">Does anyone in your household have allergies to pets?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="allergiesYes" name="petAllergies" value="yes" required>
+                                    <label for="allergiesYes">Yes</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="allergiesNo" name="petAllergies" value="no">
+                                    <label for="allergiesNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Pet Experience</h3>
+                        <div class="form-group">
+                            <label class="required-field">Have you owned a pet before?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="radio" id="petExperienceYes" name="petExperience" value="yes" required>
+                                    <label for="petExperienceYes">Yes</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="radio" id="petExperienceNo" name="petExperience" value="no">
+                                    <label for="petExperienceNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" id="currentPetsGroup">
+                            <label>Current Pets (type, age, gender)</label>
+                            <textarea id="currentPets" name="currentPets" placeholder="e.g., 1 cat, 3 years, female; 1 dog, 5 years, male"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="vetInfo">Veterinarian Name & Clinic (if applicable)</label>
+                            <input type="text" id="vetInfo" name="vetInfo">
+                        </div>
+                        <div class="form-group">
+                            <label for="petHistory">Previous Pet Ownership History</label>
+                            <textarea id="petHistory" name="petHistory" placeholder="Tell us about pets you've owned in the past"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>About Your Future Pet</h3>
+                        <div class="form-group">
+                            <label for="adoptionReason" class="required-field">Why do you want to adopt this pet?</label>
+                            <textarea id="adoptionReason" name="adoptionReason" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dailySchedule" class="required-field">Describe a typical day for your pet</label>
+                            <textarea id="dailySchedule" name="dailySchedule" required placeholder="Where will the pet stay during the day? How much exercise will they get?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="trainingPlan" class="required-field">What training methods will you use?</label>
+                            <textarea id="trainingPlan" name="trainingPlan" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="carePlan" class="required-field">Who will be primarily responsible for the pet's care?</label>
+                            <input type="text" id="carePlan" name="carePlan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergencyPlan" class="required-field">What is your plan for the pet in case of emergency or if you can no longer care for them?</label>
+                            <textarea id="emergencyPlan" name="emergencyPlan" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>References</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reference1Name" class="required-field">Reference 1 Name</label>
+                                <input type="text" id="reference1Name" name="reference1Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference1Phone" class="required-field">Reference 1 Phone</label>
+                                <input type="tel" id="reference1Phone" name="reference1Phone" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reference2Name" class="required-field">Reference 2 Name</label>
+                                <input type="text" id="reference2Name" name="reference2Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference2Phone" class="required-field">Reference 2 Phone</label>
+                                <input type="tel" id="reference2Phone" name="reference2Phone" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Additional Information</h3>
+                        <div class="form-group">
+                            <label for="additionalInfo">Anything else you'd like us to know?</label>
+                            <textarea id="additionalInfo" name="additionalInfo"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="required-field">How did you hear about us?</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hearWebsite" name="hearAbout" value="website">
+                                    <label for="hearWebsite">Website</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hearSocial" name="hearAbout" value="social">
+                                    <label for="hearSocial">Social Media</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hearFriend" name="hearAbout" value="friend">
+                                    <label for="hearFriend">Friend/Family</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hearEvent" name="hearAbout" value="event">
+                                    <label for="hearEvent">Adoption Event</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="hearOther" name="hearAbout" value="other">
+                                    <label for="hearOther">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Happy Tails</h2>
+                <p>Stories from our adoptive families</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        <p>Adopting Max through Stray Sense was the best decision we ever made. The process was so smooth and their support after adoption has been incredible.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="D:\Final_year project\adopt1.jpeg" alt="Sarah K.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah K.</h4>
+                            <p>Adopted Max, 2022</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        <p>As first-time dog owners, we appreciated how thorough Stray Sense was in matching us with the perfect dog. Bella has brought so much joy to our home.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="D:\Final_year project\adopt2.jpg" alt="The Patel Family">
+                        </div>
+                        <div class="author-info">
+                            <h4>The Patel Family</h4>
+                            <p>Adopted Bella, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        <p>I was hesitant about adopting a stray, but the health reports and behavior assessment gave me confidence. Charlie is the sweetest dog I've ever known.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="D:\Final_year project\adopt4.jpeg" alt="Michael T.">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael T.</h4>
+                            <p>Adopted Charlie, 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+   <section class="cta-section">
+    <div class="container">
+        <h2>Ready to Adopt?</h2>
+        <p>Begin your adoption journey today and give a stray dog the loving home they deserve. Our team is here to guide you every step of the way.</p>
+        <a href="#" class="btn btn-primary" onclick="openAdoptionForm('a dog')">Start Adoption Application</a>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Stray Sense</h3>
+                    <p>An initiative aimed at proactively combating rabies and enhancing public safety by leveraging technology for early detection and monitoring of stray dogs.</p>
+                    <div class="social-links-footer">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="clinics.html">Clinics</a></li>
+                        <li><a href="adoption.html">Adoption</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Health Care Tips</a></li>
+                        <li><a href="#">Veterinarian Database</a></li>
+                        <li><a href="#">Community Events</a></li>
+                        <li><a href="#">Rabies Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Connected</h3>
+                    <p>Connect with us for updates on our activities, upcoming events and pet care information.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Stray Sense. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to open specific dog modal
+        function openDogModal(dogName) {
+            document.getElementById(dogName + 'Modal').style.display = 'block';
+        }
+
+        // Function to open all dogs modal
+        function openAllDogsModal() {
+            document.getElementById('allDogsModal').style.display = 'block';
+        }
+
+        // Function to open adoption form for specific dog
+        function openAdoptionForm(dogName) {
+            document.getElementById('applyingFor').innerHTML = 'Applying to adopt: <strong>' + dogName + '</strong>';
+            document.getElementById('adoptionFormModal').style.display = 'block';
+        }
+
+        // Function to close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('adoptionApplication').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your adoption application! We will review your information and contact you within 3-5 business days.');
+            closeModal('adoptionFormModal');
+            // Here you would typically send the form data to your server
+        });
+
+        // Show/hide current pets field based on pet experience
+        document.querySelectorAll('input[name="petExperience"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('currentPetsGroup').style.display = 
+                    this.value === 'yes' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+               

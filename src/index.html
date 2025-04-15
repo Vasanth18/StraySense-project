@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stray Sense - Combating Rabies with Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Stray<span>Sense</span></div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="clinics.html">Clinics</a></li>
+                    <li><a href="adoption.html">Adoption</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline" id="loginBtn">Login</a>
+                    <a href="signup.html" class="btn btn-primary" id="signupBtn">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Proactively Combating Rabies with Technology</h1>
+            <p>Stray Sense leverages drone technology and advanced machine learning for early detection and monitoring of stray dogs to enhance public safety.</p>
+            <a href="signup.html" class="btn btn-primary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key User Functions and Features</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload Videos</h3>
+                    <p>Users can easily upload videos of their pets for report generation with clear instructions and progress indicators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Generate Reports</h3>
+                    <p>After video upload, users receive detailed reports on their pet's health and behavior.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h3>Adoption Procedures</h3>
+                    <p>Information and steps for adopting a stray dog, including viewing profiles of dogs available for adoption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Veterinarian Details</h3>
+                    <p>Access to a database of veterinarians, with contact information and services offered.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health Care Tips</h3>
+                    <p>A section dedicated to providing pet owners with valuable health care tips and advice.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Engagement</h3>
+                    <p>Resources and tools for community involvement in the project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Veterinarian Involvement -->
+    <section class="veterinarian">
+        <div class="container">
+            <div class="section-title">
+                <h2>Veterinarian Involvement</h2>
+            </div>
+            <div class="vet-content">
+                <div class="vet-text">
+                    <p>At Stray Sense, we believe that the expertise of veterinarians is crucial to the success of our mission. Our collaboration with veterinary professionals ensures the highest standard of care and health monitoring for stray dogs.</p>
+                    <p>Veterinarians play a vital role in analyzing the health and behavior reports generated from user uploaded videos. They provide expert insights and recommendations based on these assessments, ensuring accurate and reliable information for pet owners and local authorities.</p>
+                    <p>In cases where our drone technology detects potentially rabid dogs, veterinarians are immediately alerted to intervene. Their swift response is essential in managing and controlling rabies outbreaks, safeguarding both the community and stray dog populations.</p>
+                </div>
+                <div class="vet-image">
+                    <img src="D:/Final_year project/Rectangle 26-3.png" alt="Veterinarian with dog">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Upload Section -->
+    <section class="video-upload">
+        <div class="container">
+            <h2>Upload Your Dog's Video for Behavioral Analysis</h2>
+            <div class="upload-container">
+                <div class="upload-box" id="uploadBox">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <p>Upload video or Drop a file</p>
+                    <input type="file" id="videoInput" accept="video/*" style="display: none;">
+                </div>
+                <a href="http://localhost:8502/" class="btn btn-primary" id="uploadBtn">Upload</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adoption Section -->
+    <section class="adoption">
+        <div class="container">
+            <div class="section-title">
+                <h2>Adoption Process</h2>
+            </div>
+            <div class="vet-content">
+                <div class="vet-image">
+                    <img src="D:\Final_year project\World-Spay-Day-2019.jpeg" alt="Happy adopted dog">
+                </div>
+                <div class="vet-text">
+                    <p>At Stray Sense, we ensure the well-being of adopted dogs by closely monitoring adoption facilities to maintain the highest standards of care. Our veterinarians conduct regular health checks and inspections to ensure cleanliness, safety, and comfort for all dogs.</p>
+                    <p>We provide ongoing training and support to facility staff on various aspects of dog care, including nutrition, behavior management, and medical attention. Additionally, we encourage feedback from adopters to continuously improve the adoption experience.</p>
+                    <p>This comprehensive approach ensures that every adopted dog receives the love, attention, and care they deserve, fostering a positive and supportive environment for their new beginnings.</p>
+                    <a href="adoption.html" class="btn btn-primary">View Dogs for Adoption</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Stray Sense</h3>
+                    <p>An initiative aimed at proactively combating rabies and enhancing public safety by leveraging technology for early detection and monitoring of stray dogs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="clinics.html">Clinics</a></li>
+                        <li><a href="adoption.html">Adoption</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Health Care Tips</a></li>
+                        <li><a href="#">Veterinarian Database</a></li>
+                        <li><a href="#">Community Events</a></li>
+                        <li><a href="#">Rabies Prevention</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Stay Connected</h3>
+                    <p>Connect with us for updates on our activities, upcoming events and pet care information.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Stray Sense. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
